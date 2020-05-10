@@ -1,0 +1,15 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
+  <div class="text-center"><button type="button" class="humb-button mt-2" (click)="toggleCollapsed()"><i class="fa fas fa-bars"></i></button></div>
+  <div class="list-group">
+    <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-fw fa-bar-chart"></i>
+      <span>Dashboard</span>
+    </a>
+  </div>
+  <div class="list-group">
+    <a routerLink="/projects" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-fw fa-folder-open"></i>
+      <span>Projects</span>
+    </a>
+  </div>
+</nav>

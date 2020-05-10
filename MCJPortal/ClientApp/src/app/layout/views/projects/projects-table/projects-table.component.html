@@ -1,0 +1,47 @@
+<kendo-grid
+        [data]="projectLines | async"
+        [loading]="projectTableDataService.loadingSubject | async"
+        (cellClick)="onCellClicked($event)" 
+        style="width: 100%"
+        [skip]="state.skip"
+        [sort]="state.sort"
+        [filter]="state.filter"
+        [group]="state.group"
+        [pageSize]="state.take"
+        [pageable]="{ buttonCount: 2, info: false}"
+        [resizable]="true"
+        [sortable]="true"
+        (dataStateChange)="dataStateChange($event)"
+      >
+        <kendo-grid-column title="Image" width="150" [sortable]="false">
+          <ng-template  kendoGridCellTemplate let-dataItem="dataItem" let-rowIndex="rowIndex" >
+            <img class="gridImg" [src]="getImage(dataItem)" alt="project image" *ngIf="dataItem.fileDoc">
+        </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column title="Project Name" field="projectName" width="150" *ngIf="!isHidden('ProjectName')">
+        </kendo-grid-column>
+        <kendo-grid-column title="Line number" field="number" width="140">
+        </kendo-grid-column>
+        <kendo-grid-column title="Status" field="statusName" width="100">
+        </kendo-grid-column>        
+        <kendo-grid-column title="Description" field="description" width="150">
+        </kendo-grid-column>
+        <kendo-grid-column title="Cusotmer Description" field="customerDescription" width="200">
+        </kendo-grid-column>
+        <kendo-grid-column title="Barcode" field="barcode" width="100">
+        </kendo-grid-column>
+        <kendo-grid-column title="Customer Number" field="customerNumber" width="170" *ngIf="!isHidden('CustomerNumber')">
+        </kendo-grid-column>
+        <kendo-grid-column title="OEM Number" field="oemNumber" width="150">
+        </kendo-grid-column>
+        <kendo-grid-column title="NickName Australia" field="nickNameAustralia" width="170">
+        </kendo-grid-column>
+        <kendo-grid-column title="NickName India" field="nickNameIndia" width="150">
+        </kendo-grid-column>
+        <kendo-grid-column title="Material" field="materialId" width="100">
+        </kendo-grid-column>
+        <kendo-grid-column title="Weight" field="weight" width="100">
+        </kendo-grid-column>
+        <kendo-grid-column title="Unit Package Quantity" field="unitPackagedQty" width="200">
+        </kendo-grid-column>
+      </kendo-grid>

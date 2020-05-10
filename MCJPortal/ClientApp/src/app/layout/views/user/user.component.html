@@ -1,0 +1,121 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3">
+      <div class="container">
+        <form [formGroup]="form">
+          <div class="form-group row">
+            <label for="search" class="col-sm-1-12 col-form-label"
+              >Search</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="search"
+              id="search"
+              placeholder="Find name"
+              formControlName="name"
+            />
+          </div>
+          <div class="form-group row">
+            <label for="location">Location</label>
+            <kendo-dropdownlist
+              class="w-100"
+              name="location"
+              id="location"
+              [textField]="'name'"
+              [valueField]="'id'"
+              [loading]="locationsIsLoading"
+              [valuePrimitive]="true"
+              [data]="locations | async"
+              formControlName="locationId"
+              [defaultItem]="{ value: 'Select location ...', id: '' }"
+            >
+            </kendo-dropdownlist>
+          </div>
+        </form>
+        <div class="form-group row">
+          <kendo-grid
+            [data]="userData | async"
+            [loading]="userDataIsLoading"
+            (cellClick)="onCellClick($event)"
+          >
+            <kendo-grid-column title="First name" field="firstName">
+              <ng-template kendoGridCellTemplate let-dataItem>
+                <div
+                  [ngClass]="{'kendo-item-active': this.selectedUser && dataItem.id == this.selectedUser.id }"
+                >
+                  {{ dataItem.firstName }}
+                </div>
+              </ng-template>
+            </kendo-grid-column>
+          </kendo-grid>
+        </div>
+      </div>
+    </div>
+    <div class="col-9">
+      <app-edit-user
+        [user]="selectedUser"
+        (userChangedEvent)="onUserChange()"
+        (clearEvent)="onClear()"
+        [locations]="locations | async"
+        [locationsIsLoading]="locationsIsLoading"
+        (submittingChangeEvent)="onSubmittingChange($event)"
+      ></app-edit-user>
+    </div>
+  </div>
+  <div class="row" id="stick-buttons-row">
+    <button
+      type="submit"
+      form="profileForm"
+      class="btn btn-primary"
+      *ngIf="!selectedUser"
+      (click)="editUserComponent.onCreate()"
+      [disabled]="isSubmitting"
+    >
+      <span
+        *ngIf="isSubmitting"
+        class="spinner-border spinner-border-sm"
+        role="status"
+        aria-hidden="true"
+      ></span>
+      Create
+    </button>
+    <div class="btn-group" role="group" *ngIf="selectedUser">
+      <button class="btn btn-primary" *ngIf="isSubmitting">
+        <span
+          class="spinner-border spinner-border-sm"
+          role="status"
+          aria-hidden="true"
+        ></span>
+      </button>
+      <button
+        *ngIf="!isSubmitting"
+        type="submit"
+        form="profileForm"
+        class="btn btn-primary"
+        (click)="editUserComponent.onUpdate()"
+        [disabled]="isSubmitting"
+      >
+        Update
+      </button>
+      <button
+        *ngIf="!isSubmitting"
+        type="button"
+        class="btn btn-secondary ml-3"
+        (click)="editUserComponent.onDelete()"
+        [disabled]="isSubmitting"
+      >
+        Delete
+      </button>
+      <button
+        type="button"
+        form="profileForm"
+        class="btn btn-secondary ml-3"
+        (click)="onClear()"
+        [disabled]="isSubmitting"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>

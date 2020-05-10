@@ -1,0 +1,65 @@
+<div id="login-page" class="container-fluid h-100">
+  <div class="h-100 row align-items-center justify-content-md-center">
+    <div class="col-md-4">
+      <div class="row justify-content-center mb-3">
+        <img src="assets/images/logo.png" width="150" class="logo-image" />
+      </div>
+      <div class="row justify-content-center mb-5">
+        <h4 class="font-weight-bold">Malcolm Jacobs Database</h4>
+      </div>
+      <div class="row justify-content-center mb-2">
+        <h4 class="">Enter Your Login Credentials</h4>
+      </div>
+      <div class="row justify-content-center">
+        <form name="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-content">
+            <div class="form-group">
+              <input
+                type="text"
+                [ngClass]="{
+                  'is-invalid':
+                    !loginForm.controls['name'].valid &&
+                    loginForm.controls['name']?.touched
+                }"
+                formControlName="name"
+                class="form-control input-underline input-lg"
+                id="name"
+                placeholder="Username"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                [ngClass]="{
+                  'is-invalid':
+                    !loginForm.controls['password'].valid &&
+                    loginForm.controls['password']?.touched
+                }"
+                type="password"
+                formControlName="password"
+                class="form-control input-underline input-lg"
+                id="password"
+                placeholder="Password"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="row justify-content-center mt-3">
+        <button
+          class="btn btn-primary login-button"
+          type="button"
+          (click)="onSubmit()"
+          [disabled]="isSubmitting"
+        >
+          <span
+            *ngIf="isSubmitting"
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          Login
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

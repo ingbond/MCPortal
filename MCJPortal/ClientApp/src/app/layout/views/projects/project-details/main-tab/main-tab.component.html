@@ -1,0 +1,201 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h4>{{ projectLine.projectName }}</h4>
+      <h6>UNL - {{ projectLine.id }}</h6>
+    </div>
+  </div>
+  <form class="row pb-3" [formGroup]="mainTabForm" (submit)="onSubmit()">
+    <div class="col-4">
+      <div class="row">
+        <div class="col-12">
+          <img
+            class="gridImg mw-100"
+            [src]="imageHandlerService.getImage(projectLine.fileDoc)"
+            alt="project image"
+            *ngIf="projectLine.fileDoc"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <input
+            name="myFile"
+            type="file"
+            (change)="handleFileSelect($event)"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">
+            <span
+              *ngIf="isSubmitting"
+              class="spinner-border spinner-border-sm"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            Update
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <label for="description" class="col-form-label">Description</label>
+          <input
+            class="form-control"
+            name="description"
+            formControlName="description"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <label for="customerDescription" class="col-form-label"
+            >Customer Description</label
+          >
+          <input
+            class="form-control"
+            formControlName="customerDescription"
+            name="customerDescription"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="row">
+        <div class="col-12">
+          <label for="barcode" class="col-form-label">Barcode</label>
+          <input
+            class="form-control"
+            formControlName="barcode"
+            name="barcode"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <label for="lineNumber" class="col-form-label">Line Number</label>
+          <input
+            class="form-control"
+            formControlName="lineNumber"
+            lineNumber="lineNumber"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <label for="lineStatus" class="col-form-label">Line Status</label>
+
+          <kendo-dropdownlist
+            class="form-control border-0"
+            formControlName="lineStatus"
+            name="lineStatus"
+            [data]="lineStatuses | async"
+            [loading]="lineStatusesIsLoading"
+            [textField]="'value'"
+            [valueField]="'id'"
+            [valuePrimitive]="true"
+          ></kendo-dropdownlist>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <label for="oldSystemPartNumber" class="col-form-label"
+            >Old System Part Number</label
+          >
+          <input
+            class="form-control"
+            formControlName="oldSystemPartNumber"
+            name="oldSystemPartNumberr"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <label for="customerPart" class="col-form-label">Customer Part</label>
+          <input
+            class="form-control"
+            formControlName="customerPart"
+            name="customerPart"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <label for="OEMPart" class="col-form-label">OEM Part</label>
+          <input
+            class="form-control"
+            formControlName="oemPart"
+            name="OEMPart"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="row">
+        <div class="col-12">
+          <label for="nicknameIndia" class="col-form-label"
+            >Nickname India</label
+          >
+          <input
+            class="form-control"
+            formControlName="nicknameIndia"
+            name="nicknameIndia"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <label for="nicknameAustralia" class="col-form-label"
+            >Nickname Australia</label
+          >
+          <input
+            class="form-control"
+            formControlName="nicknameAustralia"
+            name="nicknameAustralia"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <label for="material" class="col-form-label">Material</label>
+          <kendo-dropdownlist
+            class="form-control border-0"
+            name="material"
+            formControlName="material"
+            [data]="materials | async"
+            [loading]="materialsIsLoading"
+            [textField]="'value'"
+            [valueField]="'id'"
+            [valuePrimitive]="true"
+          ></kendo-dropdownlist>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <label for="weightInGram" class="col-form-label"
+            >Weight In Gram</label
+          >
+          <input
+            class="form-control"
+            formControlName="weightInGram"
+            name="weightInGram"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <label for="unitPackageQuantity" class="col-form-label"
+            >Unit package quantity</label
+          >
+          <input
+            class="form-control"
+            formControlName="unitPackageQuantity"
+            name="unitPackageQuantity"
+          />
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

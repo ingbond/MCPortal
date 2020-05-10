@@ -1,0 +1,107 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+      <div class="container">
+        <span class="k-i-loading k-icon" style="font-size: 48px;" *ngIf="notAllowedPropertiesIsLoading"></span>
+        <form [formGroup]="form" *ngIf="!notAllowedPropertiesIsLoading">
+          <div class="form-group row">
+            <label for="name" class="col-sm-1-12 col-form-label"
+              >Project</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              id="name"
+              formControlName="projectName"
+            />
+          </div>
+          <div class="form-group row">
+            <label for="line">Line number</label>
+            <input
+              type="number"
+              class="form-control"
+              name="line"
+              id="line"
+              formControlName="lineNumber"
+            />
+          </div>
+          <div class="form-group row">
+            <label for="barcode">Barcode</label>
+            <input
+              type="text"
+              class="form-control"
+              name="barcode"
+              id="barcode"
+              formControlName="barcode"
+            />
+          </div>
+          <div class="form-group row">
+            <label for="nickname">Nickname</label>
+            <input
+              type="text"
+              class="form-control"
+              name="nickname"
+              id="nickname"
+              formControlName="nickname"
+            />
+          </div>
+          <div class="form-group row">
+            <label for="nickname">PSL</label>
+            <input
+              type="text"
+              class="form-control"
+              name="psl"
+              id="psl"
+              formControlName="psl"
+            />
+          </div>
+          <div class="form-group row">
+            <label for="statusId">Status</label>
+            <kendo-dropdownlist
+              [data]="statuses | async"
+              [loading]="statusesIsLoading"
+              [textField]="'value'"
+              [valueField]="'id'"
+              [valuePrimitive]="true"
+              formControlName="statusId"
+              name="statusId"
+              class="w-100"
+              [defaultItem]="{ value: 'Select status ...', id: '' }"
+            ></kendo-dropdownlist>
+          </div>
+          <div class="form-group row">
+            <label for="nickname">Allocated to</label>
+            <input
+              type="text"
+              class="form-control"
+              name="allocatedTo"
+              id="allocatedTo"
+              formControlName="allocatedTo"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-10">
+      <app-projects-table [formFilter]="filter" [notAllowedProps]="notAllowedProperties"></app-projects-table>
+    </div>
+  </div>
+  <div class="row" id="stick-buttons-row">
+    <button
+      type="submit"
+      form="profileForm"
+      class="btn btn-primary"
+      (click)="getFilterValues()"
+      [disabled]="projectTableDataService.loadingSubject | async"
+    >
+      <span
+        *ngIf="projectTableDataService.loadingSubject | async"
+        class="spinner-border spinner-border-sm"
+        role="status"
+        aria-hidden="true"
+      ></span>
+      Find
+    </button>
+  </div>
+</div>

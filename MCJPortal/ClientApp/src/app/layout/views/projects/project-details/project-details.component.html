@@ -1,0 +1,29 @@
+<div class="container-fluid" *ngIf="!projectLineIsLoading">
+  <kendo-tabstrip (tabSelect)="onTabSelect($event)">
+    <kendo-tabstrip-tab [title]="'Main'" [selected]="true">
+      <ng-template kendoTabContent>
+        <app-main-tab [projectLine]="this.projectLine"></app-main-tab>
+      </ng-template>
+    </kendo-tabstrip-tab>
+    <kendo-tabstrip-tab [title]="'Files'">
+      <ng-template kendoTabContent>
+        Files
+      </ng-template>
+    </kendo-tabstrip-tab>
+    <kendo-tabstrip-tab [title]="'Inventory'">
+      <ng-template kendoTabContent>
+        Inventory
+      </ng-template>
+    </kendo-tabstrip-tab>
+    <kendo-tabstrip-tab [title]="'Production'">
+      <ng-template kendoTabContent>
+        Production
+      </ng-template>
+    </kendo-tabstrip-tab>
+  </kendo-tabstrip>
+</div>
+<span
+  class="k-i-loading k-icon"
+  style="font-size: 48px;"
+  *ngIf="projectLineIsLoading"
+></span>

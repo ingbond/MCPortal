@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+  <a class="navbar-brand" routerLink="">
+    <img class="country-image" [src]="getUserImage()" alt="country image" />
+  </a>
+  <div class="user-menu">
+    <kendo-menu>
+      <kendo-menu-item [text]="user?.userName">
+        <i class="fa fa-user"></i><b class="caret"></b>
+        <kendo-menu-item>
+          <ng-template kendoMenuItemTemplate let-item="item" let-index="index">
+            <button class="btn btn-link text-left w-100" (click)="onLoggedout()">
+              <i class="fa fa-fw fa-power-off pr-4"></i>
+              <span>Log Out</span>
+            </button>
+          </ng-template>
+        </kendo-menu-item>
+        <kendo-menu-item>
+          <ng-template kendoMenuItemTemplate let-item="item" let-index="index">
+            <button
+              class="btn btn-link text-left w-100"
+              routerLink="/permissions"
+              [routerLinkActive]="['router-link-active-menu']"
+            >
+              <i class="fa fa-fw fa-lock pr-4"></i>
+              <span>Permissions</span>
+            </button>
+          </ng-template>
+        </kendo-menu-item>
+        <kendo-menu-item>
+          <ng-template kendoMenuItemTemplate let-item="item" let-index="index">
+            <button
+              class="btn btn-link text-left w-100"
+              routerLink="/users"
+              [routerLinkActive]="['router-link-active-menu']"
+            >
+              <i class="fa fa-fw fa-users pr-4"></i>&nbsp;
+              <span>Users</span>
+            </button>
+          </ng-template>
+        </kendo-menu-item>
+      </kendo-menu-item>
+    </kendo-menu>
+  </div>
+</nav>

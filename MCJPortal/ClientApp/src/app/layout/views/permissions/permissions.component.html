@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3">
+      <div class="container">
+        <div class="form-group row">
+          <kendo-grid
+            [data]="roles"
+            [loading]="rolesIsLoading"
+            (cellClick)="onCellClick($event)"
+          >
+            <kendo-grid-column title="Role" field="name">
+              <ng-template kendoGridCellTemplate let-dataItem>
+                <div
+                  [ngClass]="{
+                    'kendo-item-active':
+                      this.selectedRole && this.selectedRole.id == dataItem.id
+                  }"
+                >
+                  {{ dataItem.name }}
+                </div>
+              </ng-template>
+            </kendo-grid-column>
+          </kendo-grid>
+        </div>
+      </div>
+    </div>
+    <div class="col-9">
+      <app-edit-permission
+        *ngIf="selectedRole"
+        [role]="selectedRole"
+        (isSubmittingEvent)="isSubmittingChange($event)"
+        (valueWasChangedSubject)="valueWasChanged = $event"
+      ></app-edit-permission>
+    </div>
+  </div>
+  <div class="row" id="stick-buttons-row">
+    <button
+      type="submit"
+      form="profileForm"
+      class="btn btn-primary"
+      (click)="onSave()"
+      [disabled]="isSubmitting"
+    >
+      <span
+        *ngIf="isSubmitting"
+        class="spinner-border spinner-border-sm"
+        role="status"
+        aria-hidden="true"
+      ></span>
+      Save
+    </button>
+  </div>
+</div>

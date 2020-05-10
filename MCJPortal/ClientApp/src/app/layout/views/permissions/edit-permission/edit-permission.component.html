@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h4>{{ roleModel.name }}</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <kendo-grid [data]="permissions" [loading]="permissionsIsLoading">
+        <kendo-grid-column title="Permission" field="value">
+        </kendo-grid-column>
+        <kendo-grid-column title="Edit" [width]="200">
+          <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+            <kendo-dropdownlist
+              [data]="accessEnums"
+              [textField]="'name'"
+              [valueField]="'id'"
+              [valuePrimitive]="true"
+              [(ngModel)]="dataItem.access"
+              (selectionChange)="valueWasChangedSubject.next(true)"
+            ></kendo-dropdownlist>
+          </ng-template>
+        </kendo-grid-column>
+      </kendo-grid>
+    </div>
+  </div>
+</div>

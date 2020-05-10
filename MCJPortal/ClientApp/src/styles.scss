@@ -1,0 +1,101 @@
+/* You can add global styles to this file, and also import other style files */
+$main-color: #971E34;
+$secondary-color: #000000;
+/* Provide sufficient contrast against white background */
+* {
+  font-family: 'Lato', sans-serif;
+}
+
+html, body {
+  height: 100%;
+}
+
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #e01a76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.btn-link{
+  color: black;
+}
+
+.spinner-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%,-50%); /* IE 9 */
+  -webkit-transform: translate(-50%,-50%); /* Safari */
+  transform: translate(-50%,-50%); /* Standard syntax */
+  
+  .spinner-border{
+    width: 4rem; height: 4rem;
+  }
+}
+
+#stick-buttons-row{
+  display: flex;
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  background: #fff;
+}
+
+#main-container{
+  thead{
+    background-color: $main-color;
+    color: white;
+  }
+
+  .kendo-item-active{
+    color: #971E34;
+    font-weight: bold;
+  }
+
+  .form-control{
+    border-radius: 0;
+  }
+
+  label{
+    color: $main-color;
+  }
+
+  .router-link-active{
+    background-color: $main-color;
+  }
+
+  .router-link-active-menu{
+    color: $main-color;
+  }
+
+  .btn-primary{
+    background-color: $main-color;
+    border:none;
+    border-radius: 0;
+
+    &:hover{
+      opacity: 0.85;
+    }
+  }
+
+  .btn-secondary{
+    background-color: $secondary-color;
+    border:none;
+    border-radius: 0;
+
+    &:hover{
+      opacity: 0.85;
+    }
+  }
+}
